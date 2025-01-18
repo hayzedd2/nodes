@@ -1,105 +1,160 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
-  <style>
-    *{
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+    <style>
+      body {
+        font-family: "Fira Code", serif;
+        font-style: normal;
+        padding-block: 20px;
+      }
+
+      * {
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-    }
-    #cy {
-      width: 100%;
-      height: 800px;
-      background: black;
-    }
-  
-  </style>
-</head>
-<body>
-  <div id="cy"></div>
-  <script>
-    const cy = cytoscape({
-      container: document.getElementById('cy'),
-      elements: {
-        nodes: [
-          { data: { id: 'fintech', label: 'Fintech' } },
-          { data: { id: 'mono', label: 'Mono' } },
-          { data: { id: 'paystack', label: 'Paystack' } },
-          { data: { id: 'stripe', label: 'Stripe' } },
-          { data: { id: 'flw', label: 'Flutterwave' } },
-          { data: { id: 'brass', label: 'Brass' } },
-          { data: { id: 'moniepoint', label: 'Moniepoint' } },
-          { data: { id: 'opay', label: 'Opay' } },
-          { data: { id: 'grey', label: 'Grey' } }
-        ],
-        edges: [
-          { data: { source: 'fintech', target: 'mono' } },
-          { data: { source: 'fintech', target: 'paystack' } },
-          { data: { source: 'fintech', target: 'stripe' } },
-          { data: { source: 'fintech', target: 'flw' } },
-          { data: { source: 'fintech', target: 'brass' } },
-          { data: { source: 'fintech', target: 'moniepoint' } },
-          { data: { source: 'fintech', target: 'opay' } },
-          
-         
-          { data: { source: 'mono', target: 'paystack' } },
-          { data: { source: 'flw', target: 'paystack' } },
-          { data: { source: 'stripe', target: 'paystack' } },
-          { data: { source: 'grey', target: 'flw' } },
-          { data: { source: 'brass', target: 'paystack' } },
-          { data: { source: 'opay', target: 'grey' } }
-        ]
-      },
-      style: [
-        {
-          selector: 'node',
-          style: {
-            'background-color': '#22c55e',
-            'background-opacity': 1,
-            'label': 'data(label)',
-            'color': '#fff',
-            "border-radius": "0px",
-            'text-opacity': 1,
-            'font-size': '13px',
-            'font-family': 'Arial',
-            'text-halign': 'top',
-            'text-valign': 'top',
-            'width': 8,
-            'height': 8,
-        
-          }
-        },
-        {
-          selector: 'edge',
-          style: {
-            'width': 1,
-            'line-color': 'white',
-            'curve-style': 'straight',
-            'opacity':1
-          }
-        }
-      ],
-      layout: {
-        name: 'preset',
-        positions: {
-          'fintech': { x: 400, y: 300 },
-          'mono': { x: 200, y: 150 },
-          'paystack': { x: 200, y: 400 },
-          'stripe': { x: 300, y: 450 },
-          'flw': { x: 800, y: 150 },
-          'brass': { x: 500, y: 200 },
-          'moniepoint': { x: 550, y: 250 },
-          'opay': { x: 600, y: 400 },
-          'grey': { x: 650, y: 450 }
-        },
-        padding: 50
       }
-    });
+      .parent {
+        background-color: white;
+        width: 100%;
+        height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .header {
+        text-align: center;
+        max-width: 800px;
+      }
+      #cy {
+        width: 80%;
+        height: 700px;
+        background: white;
+        display: flex;
 
-    // Make nodes draggable
-    cy.nodes().ungrabify();
-    cy.nodes().grabify();
-  </script>
-</body>
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="heading">
+        <p class="header">
+          Interconnected nodes of nigerian fintechs. Some fintechs are connected
+          with each other, see Owo + mono for example, paystack + stripe. (move
+          nodes around to see clear connection)
+        </p>
+      </div>
+      <div id="cy"></div>
+    </div>
+    <script>
+      const cy = cytoscape({
+        container: document.getElementById("cy"),
+        elements: {
+          nodes: [
+            { data: { id: "fintech", label: "Fintech" } },
+            { data: { id: "mono", label: "Mono" } },
+            { data: { id: "paystack", label: "Paystack" } },
+            { data: { id: "stripe", label: "Stripe" } },
+            { data: { id: "flw", label: "Flutterwave" } },
+            { data: { id: "brass", label: "Brass" } },
+            { data: { id: "moniepoint", label: "Moniepoint" } },
+            { data: { id: "opay", label: "Opay" } },
+            { data: { id: "grey", label: "Grey" } },
+            { data: { id: "carbon", label: "Carbon" } },
+            { data: { id: "kuda", label: "Kuda" } },
+            { data: { id: "fairmoney", label: "FairMoney" } },
+            { data: { id: "piggyvest", label: "PiggyVest" } },
+            { data: { id: "cowrywise", label: "Cowrywise" } },
+            { data: { id: "paga", label: "Paga" } },
+            { data: { id: "eyowo", label: "Eyowo" } },
+            { data: { id: "owo", label: "Owo" } },
+          ],
+          edges: [
+            { data: { source: "fintech", target: "mono" } },
+            { data: { source: "stripe", target: "paystack" } },
+            { data: { source: "fintech", target: "stripe" } },
+            { data: { source: "fintech", target: "flw" } },
+            { data: { source: "paystack", target: "brass" } },
+            { data: { source: "fintech", target: "moniepoint" } },
+            { data: { source: "fintech", target: "opay" } },
+            { data: { source: "fintech", target: "carbon" } },
+            { data: { source: "fintech", target: "kuda" } },
+            { data: { source: "fintech", target: "fairmoney" } },
+            { data: { source: "fintech", target: "piggyvest" } },
+            { data: { source: "fintech", target: "cowrywise" } },
+            { data: { source: "fintech", target: "paga" } },
+            { data: { source: "fintech", target: "eyowo" } },
+            { data: { source: "mono", target: "owo" } },
+          ],
+        },
+        zoom: 1,
+        pan: { x: 150, y: 0 },
+        zoomingEnabled: false,
+        style: [
+          {
+            selector: "node",
+            style: {
+              "background-color": "#22c55e",
+              "background-opacity": 1,
+              label: "data(label)",
+              color: "black",
+              shape: "rectangle",
+              "text-opacity": 1,
+              "font-size": "13px",
+              "font-family": "Fira Code, serif",
+              "text-halign": "top",
+              "text-valign": "top",
+              width: 8,
+              height: 8,
+            },
+          },
+          {
+            selector: "edge",
+            style: {
+              width: 1,
+              "line-color": "#CCCCCC",
+              "curve-style": "straight",
+              opacity: 1,
+            },
+          },
+        ],
+        layout: {
+          name: "preset",
+          positions: {
+            fintech: { x: 420, y: 250 },
+            mono: { x: 200, y: 150 },
+            owo: { x: 250, y: 120 },
+            paystack: { x: 200, y: 400 },
+            stripe: { x: 300, y: 450 },
+            flw: { x: 800, y: 150 },
+            brass: { x: 700, y: 200 },
+            moniepoint: { x: 550, y: 250 },
+            opay: { x: 600, y: 400 },
+            grey: { x: 650, y: 450 },
+            carbon: { x: 350, y: 100 },
+            kuda: { x: 450, y: 150 },
+            fairmoney: { x: 800, y: 200 },
+            piggyvest: { x: 500, y: 500 },
+            cowrywise: { x: 650, y: 350 },
+            paga: { x: 700, y: 450 },
+            eyowo: { x: 300, y: 300 },
+          },
+          padding: 50,
+        },
+      });
+
+      // Make nodes draggable
+      cy.nodes().ungrabify();
+      cy.nodes().grabify();
+    </script>
+  </body>
 </html>
