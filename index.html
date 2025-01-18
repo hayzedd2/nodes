@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+  <style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    #cy {
+      width: 100%;
+      height: 800px;
+      background: black;
+    }
+  
+  </style>
+</head>
+<body>
+  <div id="cy"></div>
+  <script>
+    const cy = cytoscape({
+      container: document.getElementById('cy'),
+      elements: {
+        nodes: [
+          { data: { id: 'fintech', label: 'Fintech' } },
+          { data: { id: 'mono', label: 'Mono' } },
+          { data: { id: 'paystack', label: 'Paystack' } },
+          { data: { id: 'stripe', label: 'Stripe' } },
+          { data: { id: 'flw', label: 'Flutterwave' } },
+          { data: { id: 'brass', label: 'Brass' } },
+          { data: { id: 'moniepoint', label: 'Moniepoint' } },
+          { data: { id: 'opay', label: 'Opay' } },
+          { data: { id: 'grey', label: 'Grey' } }
+        ],
+        edges: [
+          { data: { source: 'fintech', target: 'mono' } },
+          { data: { source: 'fintech', target: 'paystack' } },
+          { data: { source: 'fintech', target: 'stripe' } },
+          { data: { source: 'fintech', target: 'flw' } },
+          { data: { source: 'fintech', target: 'brass' } },
+          { data: { source: 'fintech', target: 'moniepoint' } },
+          { data: { source: 'fintech', target: 'opay' } },
+          
+         
+          { data: { source: 'mono', target: 'paystack' } },
+          { data: { source: 'flw', target: 'paystack' } },
+          { data: { source: 'stripe', target: 'paystack' } },
+          { data: { source: 'grey', target: 'flw' } },
+          { data: { source: 'brass', target: 'paystack' } },
+          { data: { source: 'opay', target: 'grey' } }
+        ]
+      },
+      style: [
+        {
+          selector: 'node',
+          style: {
+            'background-color': '#22c55e',
+            'background-opacity': 1,
+            'label': 'data(label)',
+            'color': '#fff',
+            "border-radius": "0px",
+            'text-opacity': 1,
+            'font-size': '13px',
+            'font-family': 'Arial',
+            'text-halign': 'top',
+            'text-valign': 'top',
+            'width': 8,
+            'height': 8,
+        
+          }
+        },
+        {
+          selector: 'edge',
+          style: {
+            'width': 1,
+            'line-color': 'white',
+            'curve-style': 'straight',
+            'opacity':1
+          }
+        }
+      ],
+      layout: {
+        name: 'preset',
+        positions: {
+          'fintech': { x: 400, y: 300 },
+          'mono': { x: 200, y: 150 },
+          'paystack': { x: 200, y: 400 },
+          'stripe': { x: 300, y: 450 },
+          'flw': { x: 800, y: 150 },
+          'brass': { x: 500, y: 200 },
+          'moniepoint': { x: 550, y: 250 },
+          'opay': { x: 600, y: 400 },
+          'grey': { x: 650, y: 450 }
+        },
+        padding: 50
+      }
+    });
+
+    // Make nodes draggable
+    cy.nodes().ungrabify();
+    cy.nodes().grabify();
+  </script>
+</body>
+</html>
